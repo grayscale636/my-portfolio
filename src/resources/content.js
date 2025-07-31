@@ -10,7 +10,7 @@ const person = {
   avatar: "/images/avatar.jpg",
   email: "gerypangestu254@gmail.com",
   location: "Asia/Jakarta", // IANA time zone identifier for Indonesia/East Java
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  languages: ["Bahasa", "English", "日本語"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
@@ -148,7 +148,7 @@ const about = {
         images: [],
       },
       {
-        company: "Telkom University Purwokerto",
+        company: "Telkom University",
         timeframe: "September 2023 - January 2024",
         role: "NLP Computer Lab Assistant",
         achievements: [

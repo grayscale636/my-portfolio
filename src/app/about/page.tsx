@@ -79,12 +79,12 @@ export default function About() {
           position="fixed"
           paddingLeft="24"
           gap="32"
-          hide="s"
+          hide={true}
         >
           <TableOfContents structure={structure} about={about} />
         </Column>
       )}
-      <Flex fillWidth mobileDirection="column" horizontal="center">
+      <Flex fillWidth horizontal="center">
         {about.avatar.display && (
           <Column
             className={styles.avatar}
@@ -208,16 +208,7 @@ export default function About() {
               <Column fillWidth gap="l" marginBottom="40">
                 {about.work.experiences.map((experience, index) => (
                   <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
-                    <Flex
-                      fillWidth
-                      wrap
-                      gap="8"
-                      horizontal="space-between"
-                      vertical="end"
-                      marginBottom="16"
-                      paddingBottom="8"
-                    >
-
+                    <Flex fillWidth horizontal="between" vertical="end" marginBottom="12" gap="12">
                       <Text id={experience.company} variant="heading-strong-l">
                         {experience.company}
                       </Text>
@@ -225,7 +216,7 @@ export default function About() {
                         {experience.timeframe}
                       </Text>
                     </Flex>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="xl">
+                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="l">
                       {experience.role}
                     </Text>
                     <Column as="ul" gap="16">

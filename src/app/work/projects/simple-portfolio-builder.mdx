@@ -1,0 +1,46 @@
+---
+title: "Trackmeals: Food Detection and Daily Nutrition Tracker"
+publishedAt: "2023-12-10"
+summary: "An Android-based application that uses machine learning for real-time food detection and calorie estimation. Developed as a capstone project for the Bangkit Academy 2023 program."
+images:
+  - "/images/projects/trackmeals/cover-01.jpg"
+  - "/images/projects/trackmeals/cover-02.jpg"
+  - "/images/projects/trackmeals/cover-03.jpg"
+team:
+  - name: "Happy Gery Pangestu"
+    role: "Machine Learning Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/gery-pangestu/"
+  - name: "Bangkit Academy Team"
+    role: "Capstone Group"
+    avatar: "/images/projects/trackmeals/avatar-team.jpg"
+    linkedIn: "https://www.linkedin.com/company/bangkit-academy/"
+---
+
+## Overview
+
+Trackmeals is a mobile application designed to help users monitor their daily nutritional intake by leveraging computer vision for real-time food detection. The project was developed as part of the Bangkit Academy Batch 2 Capstone Project and aimed to assist individuals in building healthier eating habits through easy and automated tracking.
+
+## Key Features
+
+- **Custom Food Detection Dataset**: Collected and manually annotated a diverse dataset of local food items to ensure high model accuracy in Indonesian food contexts.
+- **Object Detection Model**: Trained a custom MobileNet SSD v2 model using TensorFlow Object Detection API to detect food items from live camera input.
+- **TFLite Deployment**: Converted the trained model to TensorFlow Lite and integrated it into an Android application for on-device inference and offline usage.
+- **Calorie Estimation**: Implemented a simple backend logic to estimate nutritional value based on the detected food class and portion size.
+- **User Interface**: Built a clean and responsive front-end in Android Studio for seamless user interaction.
+
+## Technologies Used
+
+- **TensorFlow, TFLite**: For training and deploying the object detection model.
+- **LabelImg**: For manual annotation of food images.
+- **OpenCV & Pillow**: For image preprocessing and augmentation.
+- **Android Studio (Java/Kotlin)**: For developing the mobile app interface and integrating TFLite model.
+- **Firebase**: For backend integration and user data sync (optional).
+
+## Challenges and Learnings
+
+A major challenge was building a reliable dataset of local food images, which required manual collection, cleaning, and annotation. Balancing detection speed and model size for mobile deployment also presented technical trade-offs. Throughout the process, we learned to bridge the gap between data science and mobile engineering, resulting in a production-ready AI application.
+
+## Outcome
+
+Trackmeals successfully demonstrates the feasibility of lightweight, on-device machine learning in the health-tech domain. The app enables users to easily detect and log their meals without manual input. The project has become a strong portfolio piece in showcasing end-to-end machine learning product development.

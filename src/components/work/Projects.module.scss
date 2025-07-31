@@ -1,0 +1,55 @@
+.hover {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 50%;
+        width: 3px;
+        height: 0;
+        background: linear-gradient(to bottom, var(--brand-background-strong), var(--accent-background-strong));
+        transform: translateY(-50%);
+        transition: height 0.3s ease;
+    }
+
+    &:hover {
+        transform: translateX(var(--static-space-12)) scale(1.02);
+        background: var(--neutral-alpha-weak);
+        border-radius: var(--radius-medium);
+        padding: var(--static-space-8);
+        margin: calc(-1 * var(--static-space-8));
+
+        &::before {
+            height: 60%;
+        }
+
+        .indicator {
+            transform: rotate(0) scale(1.2);
+            color: var(--brand-on-background-strong);
+        }
+        
+        .title {
+            color: var(--brand-on-background-strong);
+        }
+    }
+}
+
+.indicator {
+    transform: rotate(-90deg);
+    left: -2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.title {
+    transition: color 0.3s ease;
+}
+
+.description {
+    transition: all 0.3s ease;
+    
+    .hover:hover & {
+        transform: translateX(4px);
+    }
+}

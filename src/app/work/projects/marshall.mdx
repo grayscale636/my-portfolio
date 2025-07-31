@@ -1,0 +1,46 @@
+---
+title: "MARSHALL: Modular AI System for Educational Content Generation"
+publishedAt: "2024-05-10"
+summary: "Development of an AI-powered system using LLMs, OCR, and computer vision to assist educators in generating learning materials. Built as part of the MARSHALL team at Telkom Corporate University."
+images:
+  - "/images/projects/project-marshall/cover-01.jpg"
+  - "/images/projects/project-marshall/cover-02.jpg"
+  - "/images/projects/project-marshall/cover-03.jpg"
+team:
+  - name: "Happy Gery Pangestu"
+    role: "AI Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/gery-pangestu/"
+  - name: "Marshall Team"
+    role: "R&D Group"
+    avatar: "/images/projects/project-marshall/avatar-team.jpg"
+    linkedIn: "https://www.linkedin.com/company/telkom-corporate-university/"
+---
+
+## Overview
+
+MARSHALL (Modular Advanced Revamp System with Hyper Learning Loops) is an integrated AI system developed to support educators in generating learning materials such as illustrations, images, and text-based modules. The system leverages the power of Large Language Models (LLMs), OCR, and computer vision to automate and enhance the module creation process.
+
+## Key Features
+
+- **LLM-based Generation Pipeline**: Built a modular workflow using local and cloud-based LLMs (OpenAI, FastChat, Ollama) to assist in content generation.
+- **CLIP + TrOCR Integration**: Implemented vision-language models like CLIP and TrOCR to generate visual learning aids and extract meaningful content from scanned materials.
+- **Self-Hosted AI Tools**: Deployed and integrated tools like Dify and n8n on a home server to enable AI-driven automation and workflow orchestration.
+- **Monitoring System**: Managed performance and uptime with Grafana, Prometheus, and custom alerts to ensure reliability of educational services.
+- **Scalable Architecture**: Containerized all services with Docker and orchestrated them for future scalability across internal projects.
+
+## Technologies Used
+
+- **Python, FastAPI**: For building and serving AI inference endpoints.
+- **Dify & n8n**: For no-code/low-code AI workflow orchestration.
+- **CLIP, TrOCR**: For vision-language processing.
+- **Docker, Tailscale, Linux**: For isolated self-hosting and remote access.
+- **Grafana & Prometheus**: For system monitoring and visualization.
+
+## Challenges and Learnings
+
+One of the main challenges was integrating multiple AI models and tools into a seamless pipeline while ensuring data security and performance. Additionally, designing workflows that are intuitive for non-technical educators taught us a lot about user-centric AI applications. Maintaining an end-to-end pipeline in a self-hosted environment pushed our understanding of DevOps and system reliability.
+
+## Outcome
+
+The MARSHALL system is now actively assisting educators at Telkom Corporate University in producing learning modules more efficiently. It has significantly reduced manual workloads and improved content consistency. The project has also been a springboard for internal AI tool adoption and experimentation.

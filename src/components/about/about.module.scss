@@ -1,0 +1,96 @@
+@use "../breakpoints.scss" as breakpoints;
+
+.hover {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 0;
+        background: linear-gradient(to bottom, var(--brand-background-strong), var(--accent-background-strong));
+        transition: width 0.3s ease;
+        z-index: -1;
+        opacity: 0.1;
+    }
+
+    &:hover {
+        transform: translateX(var(--static-space-6));
+        color: var(--brand-on-background-strong);
+        
+        &::before {
+            width: 4px;
+        }
+    }
+}
+
+.avatar {
+    position: sticky;
+    height: fit-content;
+    top: var(--static-space-64);
+    transition: all 0.4s ease;
+    
+    &:hover {
+        transform: scale(1.05) rotate(2deg);
+    }
+    
+    img {
+        border: 3px solid var(--neutral-alpha-weak);
+        transition: all 0.3s ease;
+        
+        &:hover {
+            border-color: var(--brand-alpha-medium);
+            box-shadow: 0 8px 25px -5px var(--brand-alpha-medium);
+        }
+    }
+}
+
+.experience {
+    transition: all 0.3s ease;
+    padding: var(--static-space-12);
+    border-radius: var(--radius-medium);
+    border: 1px solid transparent;
+    
+    &:hover {
+        background: var(--neutral-alpha-weak);
+        border-color: var(--brand-alpha-weak);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px var(--neutral-alpha-weak);
+    }
+}
+
+.skill {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--neutral-alpha-weak);
+    
+    &:hover {
+        transform: translateY(-4px) scale(1.02);
+        border-color: var(--brand-alpha-medium);
+        background: var(--brand-alpha-weak);
+        
+        .skillTitle {
+            color: var(--brand-on-background-strong);
+        }
+    }
+}
+
+.skillTitle {
+    transition: color 0.3s ease;
+}
+
+@media (max-width: breakpoints.$s) {
+    .avatar {
+        top: auto;
+    }
+
+    .textAlign {
+        text-align: center;
+    }
+
+    .blockAlign {
+        align-self: center;
+    }
+}

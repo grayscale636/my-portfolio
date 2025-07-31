@@ -1,0 +1,83 @@
+@use "./breakpoints.scss" as breakpoints;
+
+.position {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.mask {
+    pointer-events: none;
+    backdrop-filter: blur(0.8rem) saturate(180%);
+    background: linear-gradient(to bottom, 
+        var(--page-background-alpha-strong), 
+        var(--page-background-alpha-medium),
+        var(--static-transparent)
+    );
+    mask-image: linear-gradient(rgba(0,0,0) 25%, rgba(0, 0, 0, 0) 100%);
+    mask-size: 100% 100%;
+    border-bottom: 1px solid var(--neutral-alpha-weak);
+    transition: all 0.3s ease;
+}
+
+.nav {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    .navItem {
+        position: relative;
+        transition: all 0.3s ease;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brand-background-strong), var(--accent-background-strong));
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        
+        &:hover {
+            transform: translateY(-2px);
+            color: var(--brand-on-background-strong);
+            
+            &::before {
+                transform: scaleX(1);
+            }
+        }
+        
+        &.active {
+            color: var(--brand-on-background-strong);
+            
+            &::before {
+                transform: scaleX(1);
+            }
+        }
+    }
+}
+
+@media (max-width: breakpoints.$s) {
+    .position {
+        top: auto;
+        position: fixed;
+        bottom: var(--static-space-24);
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: var(--radius-large);
+        background: var(--neutral-background-strong);
+        border: 1px solid var(--neutral-alpha-medium);
+        box-shadow: 
+            0 10px 25px -5px var(--neutral-alpha-strong),
+            0 8px 10px -6px var(--neutral-alpha-medium);
+    }
+
+    .mask {
+        transform: none;
+        bottom: auto;
+        border-radius: var(--radius-large);
+        backdrop-filter: blur(1rem) saturate(180%);
+    }
+}

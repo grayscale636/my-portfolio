@@ -9,7 +9,7 @@ const person = {
   role: "Data Scientist",
   avatar: "/images/avatar.jpg",
   email: "gerypangestu254@gmail.com",
-  location: "Indonesia/East Java", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  location: "Asia/Jakarta", // IANA time zone identifier for Indonesia/East Java
   languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
 };
 

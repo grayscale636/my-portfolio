@@ -20,7 +20,13 @@ import {
   SiNumpy,
   SiPlotly,
   SiTableau,
-  SiPostman
+  SiPostman,
+  SiMysql,
+  SiNginx,
+  SiGrafana,
+  SiGooglecloud,
+  SiGnubash,
+  SiFigma
 } from "react-icons/si";
 import { BiLogoMicrosoft } from "react-icons/bi";
 
@@ -28,20 +34,26 @@ export default function TechStacks() {
   const stacks = [
     { name: "Python", icon: SiPython, color: "#3776ab" },
     { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
+    { name: "SQL", icon: SiMysql, color: "#4479a1" },
     { name: "TensorFlow", icon: SiTensorflow, color: "#ff6f00" },
     { name: "PyTorch", icon: SiPytorch, color: "#ee4c2c" },
     { name: "Scikit-learn", icon: SiScikitlearn, color: "#f7931e" },
     { name: "FastAPI", icon: SiFastapi, color: "#009688" },
-    { name: "Flask", icon: SiFlask, color: "#000000" },
+    { name: "Flask", icon: SiFlask, color: "#ffffff" },
     { name: "OpenCV", icon: SiOpencv, color: "#5c3ee8" },
     { name: "Docker", icon: SiDocker, color: "#2496ed" },
+    { name: "Nginx", icon: SiNginx, color: "#009639" },
     { name: "Linux", icon: SiLinux, color: "#fcc624" },
+    { name: "Bash", icon: SiGnubash, color: "#4eaa25" },
     { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
     { name: "R", icon: SiR, color: "#276dc3" },
     { name: "Pandas", icon: SiPandas, color: "#150458" },
     { name: "NumPy", icon: SiNumpy, color: "#013243" },
     { name: "Plotly", icon: SiPlotly, color: "#3f4f75" },
     { name: "Tableau", icon: SiTableau, color: "#e97627" },
+    { name: "Grafana", icon: SiGrafana, color: "#f46800" },
+    { name: "GCP", icon: SiGooglecloud, color: "#4285f4" },
+    { name: "Figma", icon: SiFigma, color: "#f24e1e" },
     { name: "Postman", icon: SiPostman, color: "#ff6c37" },
     { name: "GitHub", icon: SiGithub, color: "#181717" },
     { name: "Microsoft", icon: BiLogoMicrosoft, color: "#00a1f1" },

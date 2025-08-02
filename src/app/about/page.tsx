@@ -56,6 +56,11 @@ export default function About() {
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
     },
+    {
+      title: "Publications and Scientific Papers",
+      display: true,
+      items: [],
+    },
   ];
   return (
     <Column maxWidth="m">
@@ -154,7 +159,7 @@ export default function About() {
               onBackground="neutral-weak"
             >
               <TypeWriter 
-                texts={["Data Scientist", "AI Engineer", "Machine Learning Engineer", "Backend Developer"]}
+                texts={["Data Science Enthusiast", "AI Engineer", "Machine Learning Engineer", "Backend Developer"]}
                 speed={150}
                 deleteSpeed={100}
                 pauseTime={2000}
@@ -192,7 +197,7 @@ export default function About() {
           </Column>
 
           {about.intro.display && (
-            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
+            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl" style={{ textAlign: 'justify' }}>
               {about.intro.description}
             </Column>
           )}
@@ -225,6 +230,7 @@ export default function About() {
                           as="li"
                           variant="body-default-m"
                           key={`${experience.company}-${index}`}
+                          style={{ textAlign: 'justify' }}
                         >
                           {achievement}
                         </Text>
@@ -296,7 +302,7 @@ export default function About() {
                 {about.technical.skills.map((skill, index) => (
                   <Column key={`${skill}-${index}`} fillWidth gap="4">
                     <Text id={skill.title} variant="heading-strong-l">{skill.title}</Text>
-                    <Text variant="body-default-m" onBackground="neutral-weak">
+                    <Text variant="body-default-m" onBackground="neutral-weak" style={{ textAlign: 'justify' }}>
                       {skill.description}
                     </Text>
                     {skill.images && skill.images.length > 0 && (
@@ -330,6 +336,104 @@ export default function About() {
               </Column>
             </>
           )}
+
+          {/* Publications and Scientific Papers Section */}
+          <>
+            <Heading
+              as="h2"
+              id="publications"
+              variant="display-strong-s"
+              marginTop="xl"
+              marginBottom="40"
+            >
+              Publications and Scientific Papers
+            </Heading>
+            <Column fillWidth gap="l" marginBottom="40">
+              <Column fillWidth gap="4">
+                <Text variant="heading-strong-l">
+                  Leveraging Machine Learning and Deep Learning for Enhanced Parkinson&apos;s Disease Symptom Analysis
+                </Text>
+                <Text variant="body-default-s" onBackground="brand-weak">
+                  Care XDX Center, Kyushu Institute of Technology
+                </Text>
+                <Flex gap="8" vertical="center">
+                  <Text variant="body-default-xs" onBackground="neutral-weak">
+                    (2025)
+                  </Text>
+                  <Button
+                    href="https://www.jstage.jst.go.jp/article/ijabc/2025/2/2025_111/_article"
+                    variant="secondary"
+                    size="s"
+                    label="publication link"
+                    style={{ color: '#0066cc' }}
+                  />
+                </Flex>
+              </Column>
+
+              <Column fillWidth gap="4">
+                <Text variant="heading-strong-l">
+                  Temporal-aware Ensemble Learning Facial Behavior Analysis for Accurate Depression Assessment
+                </Text>
+                <Text variant="body-default-s" onBackground="brand-weak">
+                  Care XDX Center, Kyushu Institute of Technology
+                </Text>
+                <Flex gap="8" vertical="center">
+                  <Text variant="body-default-xs" onBackground="neutral-weak">
+                    (2025)
+                  </Text>
+                  <Button
+                    href="https://www.jstage.jst.go.jp/article/ijabc/2025/2/2025_110/_article"
+                    variant="secondary"
+                    size="s"
+                    label="publication link"
+                    style={{ color: '#0066cc' }}
+                  />
+                </Flex>
+              </Column>
+
+              <Column fillWidth gap="4">
+                <Text variant="heading-strong-l">
+                  Experimental Exploration of Neural Style Transfer: Hyperparameter Impact and VGG Feature Dynamics in Batik Motif Generation
+                </Text>
+                <Text variant="body-default-s" onBackground="brand-weak">
+                  ALife Robotics Inc
+                </Text>
+                <Flex gap="8" vertical="center">
+                  <Text variant="body-default-xs" onBackground="neutral-weak">
+                    (2025)
+                  </Text>
+                  <Button
+                    href="https://dro.deakin.edu.au/articles/conference_contribution/Experimental_Exploration_of_Neural_Style_Transfer_Hyperparameter_Impact_and_VGG_Feature_Dynamics_in_Batik_Motif_Generation/28586507/1"
+                    variant="secondary"
+                    size="s"
+                    label="publication link"
+                    style={{ color: '#0066cc' }}
+                  />
+                </Flex>
+              </Column>
+
+              <Column fillWidth gap="4">
+                <Text variant="heading-strong-l">
+                  Efficiency Analysis of K-Nearest Neighbor and Forward Chaining Methods for Prediction of Stunting in Toddlers
+                </Text>
+                <Text variant="body-default-s" onBackground="brand-weak">
+                  E-Journal UNMUL
+                </Text>
+                <Flex gap="8" vertical="center">
+                  <Text variant="body-default-xs" onBackground="neutral-weak">
+                    (2023)
+                  </Text>
+                  <Button
+                    href="https://e-journals.unmul.ac.id/index.php/JIM/article/view/10169"
+                    variant="secondary"
+                    size="s"
+                    label="publication link"
+                    style={{ color: '#0066cc' }}
+                  />
+                </Flex>
+              </Column>
+            </Column>
+          </>
         </Column>
       </Flex>
     </Column>

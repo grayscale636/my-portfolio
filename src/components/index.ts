@@ -10,3 +10,4 @@ export { ThemeToggle } from "@/components/ThemeToggle";
 export { TypeWriter } from "@/components/TypeWriter";
 export { CursorFollower } from "@/components/CursorFollower";
 export { CustomMDX } from "@/components/mdx";
+export { default as Chatbot } from "@/components/Chatbot/Chatbot";

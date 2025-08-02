@@ -85,10 +85,9 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        A Data Science graduate from Telkom University with a strong interest in machine learning, backend development, and 
-        self-hosted systems. Experienced in building and managing services home server with the tools. 
-        Adaptable, curious, and eager to explore new technologies through hands-on projects that enhance both technical and 
-        practical skills.
+        A Data Science graduate from Telkom University with a strong interest in machine learning and backend development. 
+        Experienced in building and managing home server services using various tools. 
+        Adaptable, curious, and eager to explore new technologies through hands-on projects that enhance both technical and practical skills.
       </>
     ),
   },
@@ -189,7 +188,7 @@ const about = {
       },
       {
         title: "Backend & API Development",
-        description: <>Able to design and deploy REST APIs using FastAPI and Flask. Good understanding of asynchronous patterns and scalable architecture.</>,
+        description: <>Able to design and deploy REST APIs using FastAPI and Flask. Able to design and deploy REST APIs using FastAPI and Flask. Experienced in building scalable and maintainable backend architectures.</>,
         images: [],
       },
       {

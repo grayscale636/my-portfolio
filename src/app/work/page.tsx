@@ -1,6 +1,7 @@
 import { Column, Meta, Schema } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { Projects } from "@/components/work/Projects";
+import PageGuard from "@/components/PageGuard";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -14,7 +15,8 @@ export async function generateMetadata() {
 
 export default function Work() {
   return (
-    <Column maxWidth="m">
+    <PageGuard pageName="work">
+      <Column maxWidth="m">
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -30,5 +32,6 @@ export default function Work() {
       />
       <Projects />
     </Column>
+    </PageGuard>
   );
 }

@@ -11,3 +11,4 @@ export { TypeWriter } from "@/components/TypeWriter";
 export { CursorFollower } from "@/components/CursorFollower";
 export { CustomMDX } from "@/components/mdx";
 export { default as Chatbot } from "@/components/Chatbot/Chatbot";
+export { default as PageGuard } from "@/components/PageGuard";

@@ -43,8 +43,8 @@ export async function POST(request: NextRequest) {
 
     // Try different possible endpoints with HTTPS
     const baseUrls = [
-      'https://dify.irmnet.cloud', // HTTPS Domain
-      'http://dify.irmnet.cloud',  // HTTP fallback
+      'https://dify.irmlabs.my.id', // HTTPS Domain
+      'http://dify.irmlabs.my.id',  // HTTP fallback
     ];
     
     const endpointPaths = [

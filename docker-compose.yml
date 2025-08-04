@@ -1,29 +1,28 @@
-version: '3.8'
+version: '3.3'
 
 services:
   portfolio:
     build: 
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - DIFY_API_KEY=app-FCrFINfCS02AwibizhYMxgPx
+      - DIFY_API_URL=https://dify.irmlabs.my.id/v1/chat-messages
+      - DIFY_DOMAIN_URL=https://dify.irmlabs.my.id/v1/chat-messages
     restart: unless-stopped
     container_name: gery-portfolio
     networks:
       - portfolio-network
 
-  # Optional: Add reverse proxy with nginx
+  # Add reverse proxy with nginx
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
-      - "443:443"
+      - "3030:80"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./ssl:/etc/nginx/ssl  # Mount SSL certificates if you have them
     depends_on:
       - portfolio
     restart: unless-stopped

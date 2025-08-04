@@ -159,7 +159,8 @@ export default function About() {
               onBackground="neutral-weak"
             >
               <TypeWriter 
-                texts={["Data Science Enthusiast", "AI Engineer", "Machine Learning Engineer", "Backend Developer"]}
+                // texts={["Pemuwla", "Data Science Enthusiast", "AI Engineer", "Machine Learning Engineer", "Backend Developer"]}
+                texts={["Pemuwla", "Data Science Enthusiast", "AI Engineer", "Backend Developer"]}
                 speed={150}
                 deleteSpeed={100}
                 pauseTime={2000}

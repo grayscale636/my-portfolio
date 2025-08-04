@@ -5,6 +5,8 @@
     "dev": "next dev",
     "export": "next export",
     "build": "next build",
+    "build:standalone": "next build && npm run copy:static",
+    "copy:static": "cp -r public .next/standalone/ && cp -r .next/static/ .next/standalone/.next/",
     "start": "next start",
     "lint": "next lint"
   },

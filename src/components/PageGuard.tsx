@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 const BLOCKED_PAGES = {
   work: true,    // true = tutup, false = buka
-  blog: true,
+  blog: false,
   gallery: true,
   home: true
 };

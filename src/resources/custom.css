@@ -42,6 +42,86 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Blog article text justification - More specific selectors */
+article p,
+article div p,
+[role="article"] p {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  line-height: 1.6;
+}
+
+/* MDX content text justification */
+article .mdx-content p,
+article p:not(:has(img)):not(:has(a)):not(:has(code)) {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto;
+}
+
+/* Blockquotes also justified */
+article blockquote p,
+article blockquote {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Lists with justified text */
+article li,
+article ul li,
+article ol li {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Global MDX paragraph justification */
+.prose p,
+.markdown-body p,
+div[data-mdx-content] p {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Center alignment for image captions and quotes attribution */
+article figcaption,
+article .image-caption {
+  text-align: center;
+}
+
+/* Universal paragraph justification for blog content */
+body article p,
+body [role="article"] p,
+body main p {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Text justification for all text content in blog */
+article * {
+  text-align: justify !important;
+}
+
+/* Very specific targeting for MDX rendered content */
+article > div p,
+article > div > p,
+[style*="text-align: justify"] p,
+[style*="text-align: justify"] div,
+[style*="text-align: justify"] * {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  hyphens: auto !important;
+}
+
+/* Override for specific elements that should NOT be justified */
+article h1, article h2, article h3, article h4, article h5, article h6,
+article figcaption, article .image-caption, article code, article pre {
+  text-align: left !important;
+}
+
 /* Custom scroll bar */
 ::-webkit-scrollbar {
   width: 8px;

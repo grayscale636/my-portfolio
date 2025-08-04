@@ -1,0 +1,96 @@
+---
+title: "My First Budget Home Server Journey - IRMLabs Logbook #1"
+summary: "How I turned a secondhand mini PC into a legit homelab server running 28+ Docker containers"
+publishedAt: "2025-08-03"
+tag: "Homelab"
+---
+
+*Have you ever asked yourself:*  
+> "Can a low-spec mini PC really run all those self-hosted services?"
+
+That's what I asked myself. I was super skeptical, but curiosity got the best of me.
+
+
+## 🧬 What's IRMLabs?
+
+Before we dive in, quick note on the name: **IRMLabs**.
+
+Why "IRMLabs"?  
+As we all know (IYKYK), I’m a fan of *Genshin Impact*.
+There’s this concept in the game called Irminsul. Basically, a big magical cosmic tree that stores all knowledge ever. Like, literally everything. Memories, history, forgotten lore, probably even our embarrassing Google searches :v.
+
+And for some reason, that idea really stuck with me. I mean, imagine having a place where you can dump all your ideas, notes, random thoughts at 2AM, and later actually find them again. That’s the dream, right?.
+
+So I thought, hey, why not make my own version?
+I took the first three letters of Irminsul "IRM" and turned it into something that sounds slightly cooler (i think): "IRMLabs".
+
+IRMLabs isn't a high-tech facility with glowing tubes and scientists in lab coats yet (hope it really involved like Tethys system).
+But it is where I collect knowledge, make digital experiments, and pretend I know what I’m doing :3.
+
+Maybe it’s a bit of a stretch, but I like to think of IRM also standing for:
+
+<div style={{ textAlign: "center" }}>
+  <strong>"Internal Research Machine"</strong><br />
+</div>
+> *— a little digital lab where I explore tech, AI, and self-hosted tools.*
+
+## 🧰 The Humble Hardware
+
+I started with what I already had lying around, a secondhand **Lenovo ThinkCentre m910q mini PC**:
+
+- 🧠 **CPU**: Intel Core i3-7132K  
+- 🧵 **RAM**: 8GB DDR4  
+- 💾 **Storage**: 128GB SSD  
+- 🔌 **Network**: Wired LAN, directly connected to router  
+- 🧊 **Cooling**: Tiny stock fan, surprisingly quiet
+
+No GPU, no RAID, no fancy NAS. Just an old machine that was too good to throw away.
+
+> ![skeptical meme](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N3hpeTVmM3M5NTU4aXYwZjFsMGQyNjN0NjFjcjE1OG5oamo0MDF4NSZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/KrLqtbe8PGEDe/giphy.gif)  
+> *“Bro… 8GB RAM and 128GB SSD for a server?!”*
+
+## 🌀 Why Even Bother?
+
+Initially? Pure curiosity.  
+I kept seeing people on Youtube running self-hosted setups on Raspberry Pis or low-power boxes. I thought:
+
+> *“Is it really worth trying this on my old mini PC? Can it even handle Docker containers without crying?”*
+
+So I installed **Ubuntu Server**, slapped **Docker + Portainer** on top, and started deploying.
+
+
+## ⚙️ What It’s Running Now
+
+Surprisingly… quite a lot.  
+I’ve got over **28 containers** running (for now), including:
+
+- Dify (for LLM / AI backend)
+- Nextcloud (personal cloud)
+- Grafana + Prometheus (monitoring)
+- Jenkins (CI/CD)
+- n8n (automation)
+- WireGuard + Tailscale (VPN)
+- WikiJS + Logseq
+- Minio (S3 storage)
+- Vaultwarden (password manager)
+- Dashy (homelab dashboard)
+- Audiobookshelf, Kavita, Navidrome, Uptime Kuma, and more
+
+And the wild part?  
+**It’s still responsive. RAM usage is decent. CPU load is chill, as long as I don't develop directly on the server.💀**
+
+But I was shocked... okay maybe not that shocked.
+
+## 🧪 So, What I’ve Learned
+
+- You don’t need a monster rig to get started.
+- Docker + Portainer makes life **way easier**.
+- Mini PCs are perfect low-power homelab machines.
+- Don’t underestimate what Linux + containers can do, you can build your own open-source alternative to AWS, Spotify, even Netflix.
+## 📌 TL;DR
+
+> A secondhand mini PC turned into a legit homelab server with 28+ containers, a custom domain, and endless fun.
+
+If you're sitting on an old ThinkCentre or NUC — try it.  
+Worst case? You reinstall Windows.  
+Best case? You turn that old box into something surprisingly useful.🧠✨

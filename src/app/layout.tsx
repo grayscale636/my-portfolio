@@ -5,7 +5,7 @@ import '@/resources/custom.css'
 import classNames from "classnames";
 
 import { Background, Column, Flex, Meta, opacity, SpacingToken } from "@once-ui-system/core";
-import { Footer, Header, RouteGuard, Providers, Chatbot } from '@/components';
+import { Footer, Header, RouteGuard, Providers, Chatbot, GlobalHydrationHandler } from '@/components';
 import { baseURL, effects, fonts, style, dataStyle, home } from '@/resources';
 
 export async function generateMetadata() {
@@ -38,6 +38,103 @@ export default async function RootLayout({
     >
       <head>
         <script
+          suppressHydrationWarning
+          id="extension-cleanup"
+          dangerouslySetInnerHTML={{
+            __html: `
+              // Prevent browser extension interference with hydration
+              (function() {
+                // Override console methods ASAP
+                const originalError = console.error;
+                const originalWarn = console.warn;
+                
+                console.error = function(...args) {
+                  const message = args[0]?.toString() || '';
+                  if (message.includes('bis_') || 
+                      message.includes('Hydration failed') ||
+                      message.includes('server rendered HTML') ||
+                      message.includes('client properties') ||
+                      message.includes('browser extension') ||
+                      message.includes('data-bis-') ||
+                      message.includes('bis_use') ||
+                      message.includes('bis_skin_checked')) {
+                    return;
+                  }
+                  originalError.apply(console, args);
+                };
+
+                console.warn = function(...args) {
+                  const message = args[0]?.toString() || '';
+                  if (message.includes('bis_') || 
+                      message.includes('hydration') ||
+                      message.includes('data-bis-') ||
+                      message.includes('browser extension')) {
+                    return;
+                  }
+                  originalWarn.apply(console, args);
+                };
+                
+                // Aggressive cleanup function
+                function aggressiveCleanup() {
+                  try {
+                    // Remove all browser extension attributes
+                    const selectors = [
+                      '[bis_skin_checked]',
+                      '[data-bitwarden-watching]', 
+                      '[bis_use]',
+                      '[data-bis-config]',
+                      'script[src*="chrome-extension"]',
+                      'script[src*="moz-extension"]',
+                      'script[data-bis-config]'
+                    ];
+                    
+                    selectors.forEach(selector => {
+                      try {
+                        const elements = document.querySelectorAll(selector);
+                        elements.forEach(el => {
+                          if (el.tagName === 'SCRIPT' && el.src && el.src.includes('extension')) {
+                            el.remove();
+                          } else {
+                            // Remove extension attributes
+                            ['bis_skin_checked', 'data-bitwarden-watching', 'bis_use', 'data-bis-config'].forEach(attr => {
+                              el.removeAttribute(attr);
+                            });
+                          }
+                        });
+                      } catch(e) {}
+                    });
+                  } catch (e) {}
+                }
+                
+                // Run cleanup immediately
+                aggressiveCleanup();
+                
+                // Run on DOM ready
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', aggressiveCleanup);
+                } else {
+                  aggressiveCleanup();
+                }
+                
+                // Frequent cleanup
+                setInterval(aggressiveCleanup, 200);
+                
+                // Watch for mutations
+                try {
+                  const observer = new MutationObserver(aggressiveCleanup);
+                  observer.observe(document.documentElement, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['bis_skin_checked', 'data-bitwarden-watching', 'bis_use', 'data-bis-config']
+                  });
+                } catch(e) {}
+              })();
+            `
+          }}
+        />
+        <script
+          suppressHydrationWarning
           id="theme-init"
           dangerouslySetInnerHTML={{
             __html: `
@@ -96,7 +193,17 @@ export default async function RootLayout({
         />
       </head>
       <Providers>
-        <Column as="body" background="page" fillWidth style={{minHeight: "100vh"}} margin="0" padding="0" horizontal="center">
+        <GlobalHydrationHandler />
+        <Column 
+          suppressHydrationWarning
+          as="body" 
+          background="page" 
+          fillWidth 
+          style={{minHeight: "100vh"}} 
+          margin="0" 
+          padding="0" 
+          horizontal="center"
+        >
           <Background
             position="fixed"
             mask={{

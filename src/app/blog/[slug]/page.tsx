@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { CustomMDX, ScrollToHash } from "@/components";
+import { CustomMDX, ScrollToHash, BlogAnchorHandler } from "@/components";
 import { Meta, Schema, AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Text } from "@once-ui-system/core";
 import { baseURL, about, blog, person } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
@@ -82,10 +82,11 @@ export default async function Blog({
               {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
             </Text>
           </Row>
-          <Column as="article" fillWidth>
+          <Column as="article" fillWidth style={{ textAlign: 'justify' }}>
             <CustomMDX source={post.content} />
           </Column>
           <ScrollToHash />
+          <BlogAnchorHandler />
         </Column>
     </Row>
     <Column maxWidth={12} paddingLeft="40" fitHeight position="sticky" top="80" gap="16">

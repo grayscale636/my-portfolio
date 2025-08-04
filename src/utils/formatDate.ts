@@ -1,36 +1,22 @@
 export function formatDate(date: string, includeRelative = false) {
-  const currentDate = new Date();
-
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
   }
 
   const targetDate = new Date(date);
-  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
-  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-  const daysAgo = currentDate.getDate() - targetDate.getDate();
-
-  let formattedDate = "";
-
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`;
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`;
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`;
-  } else {
-    formattedDate = "Today";
-  }
-
-  const fullDate = targetDate.toLocaleString("en-us", {
+  
+  // Always return static format for SSR consistency
+  const options: Intl.DateTimeFormatOptions = {
     month: "long",
-    day: "numeric",
+    day: "numeric", 
     year: "numeric",
-  });
+    timeZone: "UTC"
+  };
+  
+  // Use static formatter that's consistent across server/client
+  const formatter = new Intl.DateTimeFormat("en-US", options);
+  const fullDate = formatter.format(targetDate);
 
-  if (!includeRelative) {
-    return fullDate;
-  }
-
-  return `${fullDate} (${formattedDate})`;
+  // Never include relative dates to avoid hydration mismatch
+  return fullDate;
 }

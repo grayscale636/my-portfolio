@@ -49,17 +49,33 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                         wrap="balance">
                         {post.metadata.title}
                     </Heading>
-                    <Text
-                        variant="label-default-s"
-                        onBackground="neutral-weak">
-                        {formatDate(post.metadata.publishedAt, false)}
-                    </Text>
-                    { post.metadata.tag &&
-                        <Tag
-                            className="mt-12"
-                            label={post.metadata.tag}
-                            variant="neutral" />
-                    }
+                    
+                    <Flex gap="8" vertical="center" wrap>
+                        <Text
+                            variant="label-default-s"
+                            onBackground="neutral-weak">
+                            {formatDate(post.metadata.publishedAt, false)}
+                        </Text>
+                        { post.metadata.tag && (
+                            <>
+                                <Text variant="label-default-s" onBackground="neutral-weak">•</Text>
+                                <Tag
+                                    label={post.metadata.tag}
+                                    variant="neutral" 
+                                    size="s"
+                                />
+                            </>
+                        )}
+                    </Flex>
+                    
+                    {post.metadata.summary && (
+                        <Text
+                            variant="body-default-s"
+                            onBackground="neutral-weak"
+                            style={{ marginTop: '8px' }}>
+                            {post.metadata.summary}
+                        </Text>
+                    )}
                 </Column>
             </Flex>
         </SmartLink>

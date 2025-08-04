@@ -30,13 +30,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
           line: dataStyle.tick.line
         }}
         >
-        <ToastProvider>
-          <IconProvider icons={iconLibrary}>
-            <LayoutProvider>
+        <IconProvider icons={iconLibrary}>
+          <LayoutProvider>
+            <ToastProvider>
               {children}
-            </LayoutProvider>
-          </IconProvider>
-        </ToastProvider>
+            </ToastProvider>
+          </LayoutProvider>
+        </IconProvider>
       </DataThemeProvider>
     </ThemeProvider>
   );

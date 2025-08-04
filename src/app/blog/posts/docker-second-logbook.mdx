@@ -1,0 +1,100 @@
+---
+title: "Getting Comfortable with Docker & Portainer - IRMLabs Logbook #2"
+summary: "How Docker and Portainer made self-hosting feel less scary and more like digital gardening"
+publishedAt: "2025-08-04"
+tag: "Homelab"
+---
+
+> *"Docker? Sounds too dev-y…"*  
+
+That was my first thought.  
+So many commands, weird YAML files, port mapping sorcery. I was this close to quitting before I even started.
+
+## 🤔 Why Even Bother?
+
+Simple: I didn't wanna keep reinstalling broken apps manually.  
+I wanted a reset button for everything. Docker gave me that.
+
+It's like having save points in a video game.  
+You mess up?  
+Just reload it.
+
+## 📦 The Docker Flow That Finally Clicked
+
+After a few trial-and-error sessions (okay, maybe a dozen), I found a flow that felt *right*:
+
+1. Search for a project I wanna try  
+2. Look up the `docker-compose.yml`  
+3. Paste it into Portainer's Stack panel  
+4. Hit "Deploy"  
+5. Done. Service is alive. No tears involved.
+
+> Here's one I shamelessly copy-pasted:
+
+```yaml
+version: "3"
+services:
+  hello:
+    image: nginxdemos/hello
+    container_name: hello-world
+    ports:
+      - "8888:80"
+    restart: unless-stopped
+```
+
+Now when I visit `http://<server-ip>:8888`, I get a happy little page saying "Welcome!"  
+Simple, clean, validating.
+
+## 🧑‍💻 Why Portainer Helps Me Stay Sane
+
+Let's be honest, I didn't memorize all the Docker CLI stuff.  
+And I didn't want to.
+
+With Portainer:
+
+- I can see what's running
+- I can check logs visually  
+- I can tweak environment variables without messing up config files
+- I can restart stuff when it feels moody
+
+All through a browser tab. It felt like cheating at first.
+
+## 🧼 Keeping Things Clean
+
+What surprised me was how easy it was to update or remove containers too.
+
+Want a fresh start? Just nuke the stack and redeploy.
+
+Something stuck? View logs, fix the yml, try again.
+
+Even when something didn't work out, it never left a mess behind.  
+Kinda like a roommate who actually does the dishes.
+
+> ![Docker success meme](https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N3hpeTVmM3M5NTU4aXYwZjFsMGQyNjN0NjFjcjE1OG5oamo0MDF4NSZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/3o7btPCcdNniyf0ArS/giphy.gif)  
+> *"First Docker success. Suddenly i think I'm a DevOps engineer:v."*
+
+## 🧠 Things I Learned (a.k.a. Mistakes)
+
+**Backups matter.**  
+Accidentally deleting volume = full reset. Ask me how I know 🫠
+
+**Resource limits help.**  
+A single rogue container ate 5GB RAM once and almost took the whole mini PC down.
+
+**Naming stuff wisely avoids headaches later.**  
+"app1", "test2", and "whyisthisbroken" were not sustainable long term 😂
+
+## 🌱 The IRMLabs Way
+
+At this point, Portainer feels like a digital greenhouse for all the experiments I've been running.  
+Small container, isolated soil, carefully watered.  
+Sometimes the plant thrives. Sometimes it withers. But at least I understand what happened.
+
+## ☕ TL;DR
+
+Docker gave me the tools.  
+Portainer gave me the courage.
+
+If you're still hovering on the fence wondering if self-hosting is worth it,  
+just spin up one thing — anything.  
+You'll know within minutes if the spark's there.

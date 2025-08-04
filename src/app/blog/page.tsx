@@ -1,6 +1,7 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import { Mailchimp } from "@/components";
-import { Posts } from "@/components/blog/Posts";
+import { PostsWithFilter } from "@/components/blog/PostsWithFilter";
+import { getPosts } from "@/utils/utils";
 import { baseURL, blog, person, newsletter } from "@/resources";
 import PageGuard from "@/components/PageGuard";
 
@@ -15,6 +16,12 @@ export async function generateMetadata() {
 }
 
 export default function Blog() {
+  // Get posts on server-side
+  const allPosts = getPosts(['src', 'app', 'blog', 'posts']);
+  const sortedPosts = allPosts.sort((a, b) => {
+    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
+  });
+
   return (
     <PageGuard pageName="blog">
       <Column maxWidth="s">
@@ -34,12 +41,10 @@ export default function Blog() {
       <Heading marginBottom="l" variant="display-strong-s">
         {blog.title}
       </Heading>
-      <Column
-				fillWidth flex={1}>
-				<Posts range={[1,1]} thumbnail direction="column"/>
-				<Posts range={[2,3]} thumbnail/>
-				<Posts range={[4]} columns="2"/>
-			</Column>
+      
+      {/* Pass posts data to client component */}
+      <PostsWithFilter posts={sortedPosts} showFilter={true} columns="1" thumbnail direction="column"/>
+      
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
     </PageGuard>

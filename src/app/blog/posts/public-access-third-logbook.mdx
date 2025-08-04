@@ -1,0 +1,155 @@
+---
+title: "The app at home but Reachable Anywhere? Let's Talk VPN + Domains - IRMLabs Logbook #3"
+publishedAt: "2025-08-04"
+summary: "From local-only services to publicly accessible domains: Building a secure homelab infrastructure with Tailscale VPN, Cloudflare Tunnel, and .my.id domains for reliable remote access and public hosting."
+tag: "Homelab"
+---
+
+So I had a bunch of services running perfectly on my little home server.  
+But then it hit me:
+
+_"What happens if I go out of town and something breaks?  
+How do I even fix it remotely if it's only accessible on my local network?"_
+
+That simple question sparked a whole new journey.  
+It wasn't just about self-hosting anymore, it was about **reliability**, **accessibility**, and **peace of mind**.
+
+
+## 🔐 Tailscale: My Private VPN Lifeline
+
+At first, I turned to [**Tailscale**](https://tailscale.com), and wow, this thing's a lifesaver.
+
+With Tailscale, I could:
+
+- Access `192.168.x.x` IPs from **anywhere in the world**
+- SSH into my mini PC
+- View logs, restart containers, or check web dashboards
+- Install the app on phone and manage stuff on the go
+
+> It's like carrying your home network in your pocket. Wild.
+
+But then another question came up:
+
+_"Okay cool, I can access my server.  
+But what if I want **other people** to access one of my services, like an AI assistant or wiki?"_
+
+Then, enter the next layer
+
+## 🌍 Local IP ≠ Public Access
+
+Here's the catch:  
+All my services (like Grafana, Dify, Nextcloud, etc.) were only reachable via `http://192.168.xxx.xxx` or with vpn `http://100.98.xxx.xx.`
+
+That's great inside my network.  
+But obviously, no one on the internet can access that, unless I onboard them to my VPN manually. And that's not scalable.
+
+So I built a better solution.
+
+
+## 🧠 The Public Stack: Docker → NPM → Cloudflare Tunnel → Domain
+
+Let's say I want people to visit `https://grafana.irmlabs.my.id` and see my Grafana dashboard — all hosted from my home.
+
+Here's the architecture I ended up with:
+
+```bash
+Dockerized Service (Grafana, Dify, etc.)
+   ↓
+Nginx Proxy Manager (Reverse Proxy + SSL)
+   ↓
+Cloudflare Tunnel (Secure Gateway)
+   ↓
+Public Domain (e.g. https://grafana.irmlabs.my.id)
+```
+
+This setup gave me:
+
+✅ Secure HTTPS access  
+✅ No port forwarding  
+✅ No static IP needed  
+✅ Flexible DNS control with Cloudflare  
+✅ Total control over who gets access
+
+Now, in order to make your local service accessible **on the internet**, you need a **domain name**, that something people can actually type into their browser instead of a random IP.
+
+That’s where **DNS (Domain Name System)** comes in.
+
+Think of DNS as the internet’s phone book.
+You give it a name (like `grafana.irmlabs.my.id`) and it tells browsers where to go (your server’s IP, via Cloudflare Tunnel in our case).
+
+There are all kinds of domain endings, such as `.com`, `.tech`, `.io`, `.ai`, `.xyz`. Each with different vibes and price tags.  
+But since this was just my little homelab project, I didn’t want to spend much.
+
+
+## 💡 Why I Picked a `.my.id` Domain
+
+Honestly? I was just experimenting.
+
+I didn't want to spend much on a "real" TLD.  
+Then I found out `.my.id` domains cost around IDR.30K/year. That's basically free in homelab terms 😅
+
+So I grabbed `irmlabs.my.id`.
+
+## 🚀 How I Deployed a Local App to a Public Domain
+
+Let's walk through how I exposed a local service (like Grafana) to the internet using Cloudflare Tunnel and Nginx Proxy Manager.
+
+### 1. Add a Reverse Proxy in NPM
+
+Open Nginx Proxy Manager at:
+
+```
+http://192.168.100.220:8181/
+```
+
+Create a new proxy host:
+
+- Domain: `yourservice.irmlabs.my.id`
+- Forward Hostname/IP: `192.168.100.220`
+- Port: *(e.g. 3000 for Grafana)*
+- SSL: Request a Let's Encrypt certificate
+
+
+### 2. Edit Cloudflare Tunnel Config
+
+Open the config file:
+
+```bash
+sudo nano ~/.cloudflared/config.yml
+```
+
+Add the new service like this:
+
+```yaml
+ingress:
+  - hostname: yourservice.irmlabs.my.id
+    service: http://192.168.100.220:8181
+  - service: http_status:404
+```
+
+### 3. Add the DNS Route via Cloudflare CLI
+
+Run this command:
+
+```bash
+cloudflared tunnel route dns irmlabs-tunnel yourservice.irmlabs.my.id
+```
+
+This tells Cloudflare which domain should map to your tunnel.
+
+### 4. Restart Cloudflare Tunnel
+
+Apply the changes:
+
+```bash
+sudo systemctl restart cloudflared
+```
+
+Done! You can now visit your app securely at:
+
+```
+https://yourservice.irmlabs.my.id
+```
+
+And yes, full SSL encryption with Let's Encrypt, automatically managed by Cloudflare + NPM.  
+No need to touch port 443 or deal with cert renewals ever again.

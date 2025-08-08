@@ -2,7 +2,7 @@
 
 my edited website link
 👇👇👇
-![https://gery.irmlabs.my.id/about] (https://gery.irmlabs.my.id/about)
+https://gery.irmlabs.my.id/about
 
 A highly customized portfolio featuring AI chatbot integration, interactive tech stacks, and advanced content management.
 
